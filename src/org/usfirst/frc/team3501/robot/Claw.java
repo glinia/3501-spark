@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Claw extends FireBot {
 
-	DoubleSolenoid claw;
-	State state;
+	private DoubleSolenoid claw;
+	private State state;
 
 	public Claw() {
 		claw = new DoubleSolenoid(CLAW_FORWARD_CHANNEL, CLAW_REVERSE_CHANNEL);

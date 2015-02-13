@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Toggle extends FireBot {
 
-	HashMap<Integer, Timer> timeouts;
+	private HashMap<Integer, Timer> timeouts;
 
 	/*
 	 * WARNING: this only works with one joystick for the moment

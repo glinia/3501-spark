@@ -3,7 +3,7 @@ package org.usfirst.frc.team3501.robot;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class FireStick extends Joystick {
-    Toggle toggle;
+    private Toggle toggle;
     
 	public FireStick(int port) {
 		super(port);

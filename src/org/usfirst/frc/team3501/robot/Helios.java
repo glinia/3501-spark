@@ -19,15 +19,18 @@ public class Helios extends FireBot {
     }
 
     public void teleopPeriodic() {
+    	buttonsPressed();
+    	
+    	drive();
+        arm.move();
+        claw.actuate();
+    }
+    
+    private void drive() {
     	double right = rightStick.getY();
     	double left  = leftStick.getY();
     	
     	drivetrain.drive(right, left);
-    	
-    	buttonsPressed();
-    	
-        arm.moveToLevel();
-        claw.actuate();
     }
     
     private void buttonsPressed() {
@@ -57,9 +60,9 @@ public class Helios extends FireBot {
     	
     	// top buttons
     	if (rightStick.getToggleButton(3))
-    		arm.setLevel(arm.getLevel() - 1);
+    		arm.downLevel();
     	
     	if (rightStick.getToggleButton(4))
-    		arm.setLevel(arm.getLevel() + 1);
+    		arm.upLevel();
     }
 }
