@@ -1,24 +1,17 @@
 
 package org.usfirst.frc.team3501.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Joystick;
-
 public class Helios extends FireBot {
 	
-	Joystick rightStick, leftStick;
-	DriverStation driverStation;
-	Toggle toggle;
+	private FireStick rightStick, leftStick;
 	
-	Drivetrain drivetrain;
-	Arm arm;
-	Claw claw;
+	private Drivetrain drivetrain;
+	private Arm arm;
+	private Claw claw;
 	
     public void robotInit() {
-    	driverStation = DriverStation.getInstance();
-    	rightStick    = new Joystick(RIGHT_JOYSTICK_PORT);
-    	leftStick     = new Joystick(LEFT_JOYSTICK_PORT);
-    	toggle        = new Toggle();
+    	rightStick    = new FireStick(RIGHT_JOYSTICK_PORT);
+    	leftStick     = new FireStick(LEFT_JOYSTICK_PORT);
     	
     	drivetrain = new Drivetrain();
     	arm        = new Arm();
@@ -26,8 +19,8 @@ public class Helios extends FireBot {
     }
 
     public void teleopPeriodic() {
-    	double right = rightStick.getRawAxis(Y_AXIS);
-    	double left  = leftStick.getRawAxis(Y_AXIS);
+    	double right = rightStick.getY();
+    	double left  = leftStick.getY();
     	
     	drivetrain.drive(right, left);
     	
@@ -39,13 +32,13 @@ public class Helios extends FireBot {
     
     private void buttonsPressed() {
     	// trigger
-    	if (rightStick.getRawButton(1))
+    	if (rightStick.get(1))
     		claw.close();
     	else
     		claw.open();
     	
     	// thumb toggle
-    	if (getToggleButton(rightStick, 2)) {
+    	if (rightStick.getToggleButton(2)) {
     		switch (claw.getState()) {
     		case FREE:
     			claw.setState(State.CLOSED);
@@ -63,20 +56,10 @@ public class Helios extends FireBot {
     		arm.set(0);
     	
     	// top buttons
-    	if (getToggleButton(rightStick, 3))
+    	if (rightStick.getToggleButton(3))
     		arm.setLevel(arm.getLevel() - 1);
     	
-    	if (getToggleButton(rightStick, 4))
+    	if (rightStick.getToggleButton(4))
     		arm.setLevel(arm.getLevel() + 1);
-    }
-    
-    private boolean getToggleButton(Joystick joystick, int button) {
-    	boolean pressed = joystick.getRawButton(button)
-    				   && !toggle.hasTimeLeft(button);
-    	
-    	if (pressed)
-    		toggle.addTimeout(button);
-    	
-    	return pressed;
     }
 }

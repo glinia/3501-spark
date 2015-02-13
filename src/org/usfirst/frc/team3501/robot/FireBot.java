@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 
 public class FireBot extends IterativeRobot {
 	// joystick control
-	protected final int X_AXIS = 1, Y_AXIS = 2, TWIST = 3;
-
 	protected final int RIGHT_JOYSTICK_PORT = 1, LEFT_JOYSTICK_PORT = 2;
 
 	protected final double TOGGLE_TIME = 0.2;
