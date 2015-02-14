@@ -27,4 +27,8 @@ public class Drivetrain extends FireBot {
     	frontLeft.set(forward);
     	rearLeft.set(forward);
     }
+    
+    public void moveJag() {
+    	rearLeft.set(1);
+    }
 }

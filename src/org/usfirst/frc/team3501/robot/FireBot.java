@@ -13,11 +13,11 @@ public class FireBot extends IterativeRobot {
 											DOWN = 5, DOWN_LEFT = 6, LEFT = 7, UP_LEFT = 8;
 
 	// drivetrain
-	protected final int FRONT_LEFT_ADDRESS = 0, FRONT_RIGHT_ADDRESS = 1,
-			  REAR_LEFT_ADDRESS = 2,  REAR_RIGHT_ADDRESS = 3;
+	protected final int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
+			  REAR_LEFT_ADDRESS = 3,  REAR_RIGHT_ADDRESS = 6;
 
 	// winch
-	protected final int LEFT_WINCH_ADDRESS = 4, RIGHT_WINCH_ADDRESS = 5;
+	protected final int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
 	protected final int LEFT_WINCH_ENCODER_A = 0,  LEFT_WINCH_ENCODER_B = 1,
 			  RIGHT_WINCH_ENCODER_A = 2, RIGHT_WINCH_ENCODER_B = 3;

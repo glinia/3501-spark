@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team3501.robot;
 
-public class Helios extends FireBot {
+public class Robot extends FireBot {
 	
 	private FireStick rightStick, leftStick;
 	
@@ -24,6 +24,10 @@ public class Helios extends FireBot {
     	drive();
         arm.move();
         claw.actuate();
+    }
+    
+    public void autonPeriodic() {
+    	drivetrain.moveJag();
     }
     
     private void drive() {
