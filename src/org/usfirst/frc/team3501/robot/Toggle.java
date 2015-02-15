@@ -6,29 +6,29 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Toggle extends FireBot {
 
-	private HashMap<Integer, Timer> timeouts;
+    private HashMap<Integer, Timer> timeouts;
 
-	/*
-	 * WARNING: this only works with one joystick for the moment
-	 */
-	public Toggle() {
-		timeouts = new HashMap<Integer, Timer>();
-	}
+    /*
+     * WARNING: this only works with one joystick for the moment
+     */
+    public Toggle() {
+        timeouts = new HashMap<Integer, Timer>();
+    }
 
-	public void addTimeout(int button) {
-		Timer t = new Timer();
-		t.start();
+    public void addTimeout(int button) {
+        Timer t = new Timer();
+        t.start();
 
-		timeouts.put(button, t);
-	}
+        timeouts.put(button, t);
+    }
 
-	public Timer getTimeout(int button) {
-		return timeouts.get(button);
-	}
+    public Timer getTimeout(int button) {
+        return timeouts.get(button);
+    }
 
-	public boolean hasTimeLeft(int button) {
-		return timeouts.get(button) != null
-			&& timeouts.get(button).get() > TOGGLE_TIME;
-	}
+    public boolean hasTimeLeft(int button) {
+        return timeouts.get(button) != null
+            && timeouts.get(button).get() > TOGGLE_TIME;
+    }
 
 }
