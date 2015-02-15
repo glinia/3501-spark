@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class Toggle extends FireBot {
+public class Toggle {
 
     private HashMap<Integer, Timer> timeouts;
 
@@ -28,7 +28,7 @@ public class Toggle extends FireBot {
 
     public boolean hasTimeLeft(int button) {
         return timeouts.get(button) != null
-            && timeouts.get(button).get() > TOGGLE_TIME;
+                && timeouts.get(button).get() > C.TOGGLE_TIME;
     }
 
 }

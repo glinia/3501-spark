@@ -5,26 +5,26 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 
-public class Drivetrain extends FireBot {
+public class Drivetrain {
 
-    private CANJaguar     frontLeftJ, frontRightJ, rearLeftJ, rearRightJ;
-    private PIDController frontLeft,  frontRight,  rearLeft,  rearRight;
+    private CANJaguar frontLeftJ, frontRightJ, rearLeftJ, rearRightJ;
+    private PIDController frontLeft, frontRight, rearLeft, rearRight;
 
     public Drivetrain() {
         initJags();
 
-        Encoder leftEncoder = new Encoder(LEFT_DRIVE_ENCODER_A, LEFT_DRIVE_ENCODER_B,
-                false, EncodingType.k4X);
-        Encoder rightEncoder = new Encoder(RIGHT_DRIVE_ENCODER_A, RIGHT_DRIVE_ENCODER_B,
-                false, EncodingType.k4X);
+        Encoder leftEncoder = new Encoder(C.LEFT_DRIVE_ENCODER_A,
+                C.LEFT_DRIVE_ENCODER_B, false, EncodingType.k4X);
+        Encoder rightEncoder = new Encoder(C.RIGHT_DRIVE_ENCODER_A,
+                C.RIGHT_DRIVE_ENCODER_B, false, EncodingType.k4X);
 
-        leftEncoder.setDistancePerPulse(DIST_PER_PULSE);
-        rightEncoder.setDistancePerPulse(DIST_PER_PULSE);
+        leftEncoder.setDistancePerPulse(C.DIST_PER_PULSE);
+        rightEncoder.setDistancePerPulse(C.DIST_PER_PULSE);
 
-        frontLeft  = new PIDController(P, I, D, leftEncoder, frontLeftJ);
-        frontRight = new PIDController(P, I, D, leftEncoder, frontRightJ);
-        rearLeft   = new PIDController(P, I, D, rightEncoder, rearLeftJ);
-        rearRight  = new PIDController(P, I, D, rightEncoder, rearRightJ);
+        frontLeft = new PIDController(C.P, C.I, C.D, leftEncoder, frontLeftJ);
+        frontRight = new PIDController(C.P, C.I, C.D, leftEncoder, frontRightJ);
+        rearLeft = new PIDController(C.P, C.I, C.D, rightEncoder, rearLeftJ);
+        rearRight = new PIDController(C.P, C.I, C.D, rightEncoder, rearRightJ);
 
         frontLeft.enable();
         frontRight.enable();
@@ -33,20 +33,24 @@ public class Drivetrain extends FireBot {
     }
 
     private void initJags() {
-        frontLeftJ  = new CANJaguar(FRONT_LEFT_ADDRESS);
-        frontRightJ = new CANJaguar(FRONT_RIGHT_ADDRESS);
-        rearLeftJ   = new CANJaguar(REAR_LEFT_ADDRESS);
-        rearRightJ  = new CANJaguar(REAR_RIGHT_ADDRESS);
+        frontLeftJ = new CANJaguar(C.FRONT_LEFT_ADDRESS);
+        frontRightJ = new CANJaguar(C.FRONT_RIGHT_ADDRESS);
+        rearLeftJ = new CANJaguar(C.REAR_LEFT_ADDRESS);
+        rearRightJ = new CANJaguar(C.REAR_RIGHT_ADDRESS);
 
-//      frontLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I, D);
-//      frontRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I, D);
-//      rearLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I, D);
-//      rearRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I, D);
-//
-//      frontLeftJ.enableControl();
-//      frontRightJ.enableControl();
-//      rearLeftJ.enableControl();
-//      rearRightJ.enableControl();
+        // frontLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
+        // I, D);
+        // frontRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
+        // I, D);
+        // rearLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
+        // I, D);
+        // rearRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
+        // I, D);
+        //
+        // frontLeftJ.enableControl();
+        // frontRightJ.enableControl();
+        // rearLeftJ.enableControl();
+        // rearRightJ.enableControl();
     }
 
     public void drive(double left, double right) {

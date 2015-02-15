@@ -2,34 +2,35 @@ package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class Claw extends FireBot {
+public class Claw {
 
     private DoubleSolenoid claw;
-    private State state;
+    private C.State state;
 
     public Claw() {
-        claw = new DoubleSolenoid(CLAW_FORWARD_CHANNEL, CLAW_REVERSE_CHANNEL);
-        state = State.FREE;
+        claw = new DoubleSolenoid(C.CLAW_FORWARD_CHANNEL,
+                C.CLAW_REVERSE_CHANNEL);
+        state = C.State.FREE;
     }
 
     public void open() {
-        claw.set(OPEN);
+        claw.set(C.OPEN);
     }
 
     public void close() {
-        claw.set(CLOSE);
+        claw.set(C.CLOSE);
     }
 
     public void actuate() {
-        if (state == State.CLOSED)
+        if (state == C.State.CLOSED)
             close();
     }
 
-    public void setState(State s) {
+    public void setState(C.State s) {
         state = s;
     }
 
-    public State getState() {
+    public C.State getState() {
         return state;
     }
 }

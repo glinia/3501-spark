@@ -1,7 +1,8 @@
-
 package org.usfirst.frc.team3501.robot;
 
-public class Robot extends FireBot {
+import edu.wpi.first.wpilibj.IterativeRobot;
+
+public class Robot extends IterativeRobot {
 
     private FireStick rightStick, leftStick;
 
@@ -10,12 +11,12 @@ public class Robot extends FireBot {
     private Claw claw;
 
     public void robotInit() {
-        rightStick    = new FireStick(RIGHT_JOYSTICK_PORT);
-        leftStick     = new FireStick(LEFT_JOYSTICK_PORT);
+        rightStick = new FireStick(C.RIGHT_JOYSTICK_PORT);
+        leftStick = new FireStick(C.LEFT_JOYSTICK_PORT);
 
         drivetrain = new Drivetrain();
-        arm        = new Arm();
-        claw       = new Claw();
+        arm = new Arm();
+        claw = new Claw();
     }
 
     public void teleopPeriodic() {
@@ -28,7 +29,7 @@ public class Robot extends FireBot {
 
     private void drive() {
         double right = rightStick.getY();
-        double left  = leftStick.getY();
+        double left = leftStick.getY();
 
         drivetrain.drive(right, left);
     }
@@ -44,16 +45,16 @@ public class Robot extends FireBot {
         if (rightStick.getToggleButton(2)) {
             switch (claw.getState()) {
             case FREE:
-                claw.setState(State.CLOSED);
+                claw.setState(C.State.CLOSED);
             default:
-                claw.setState(State.FREE);
+                claw.setState(C.State.FREE);
             }
         }
 
         // hat stick
-        if (rightStick.getPOV() == UP)
+        if (rightStick.getPOV() == C.UP)
             arm.set(1);
-        else if (rightStick.getPOV() == DOWN)
+        else if (rightStick.getPOV() == C.DOWN)
             arm.set(-1);
         else
             arm.set(0);
