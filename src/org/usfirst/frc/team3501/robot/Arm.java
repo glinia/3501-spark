@@ -26,8 +26,8 @@ public class Arm extends FireBot {
 	}
 
 	public void setLevel(int level) {
-		if (level > 4) level = 4;
-		if (level < 0) level = 0;
+		if (level > HIGHEST_ARM_LEVEL) level = HIGHEST_ARM_LEVEL;
+		if (level < LOWEST_ARM_LEVEL) level = LOWEST_ARM_LEVEL;
 
 		this.level = level;
 	}

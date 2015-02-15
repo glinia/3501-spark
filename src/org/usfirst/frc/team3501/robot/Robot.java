@@ -26,10 +26,6 @@ public class Robot extends FireBot {
         claw.actuate();
     }
     
-    public void autonPeriodic() {
-    	drivetrain.moveJag();
-    }
-    
     private void drive() {
     	double right = rightStick.getY();
     	double left  = leftStick.getY();

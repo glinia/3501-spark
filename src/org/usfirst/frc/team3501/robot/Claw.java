@@ -13,11 +13,11 @@ public class Claw extends FireBot {
 	}
 
 	public void close() {
-		claw.set(FORWARD);
+		claw.set(OPEN);
 	}
 
 	public void open() {
-		claw.set(REVERSE);
+		claw.set(CLOSE);
 	}
 
 	public void actuate() {
