@@ -12,11 +12,11 @@ public class Claw extends FireBot {
         state = State.FREE;
     }
 
-    public void close() {
+    public void open() {
         claw.set(OPEN);
     }
 
-    public void open() {
+    public void close() {
         claw.set(CLOSE);
     }
 
