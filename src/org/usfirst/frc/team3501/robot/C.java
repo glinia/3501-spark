@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class C {
     // joystick control
-    final static int RIGHT_JOYSTICK_PORT = 2, LEFT_JOYSTICK_PORT = 3;
+    final static int RIGHT_JOYSTICK_PORT = 3, LEFT_JOYSTICK_PORT = 2;
 
     final static double TOGGLE_TIME = 0.2;
     final static int UP = 0, DOWN = 180, NOT_PRESSED = -1;
