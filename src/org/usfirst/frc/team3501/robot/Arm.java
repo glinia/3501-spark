@@ -1,50 +1,26 @@
 package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
 
 public class Arm {
 
     private CANJaguar leftJ, rightJ;
-    private PIDController left, right;
 
     private int level;
 
     public Arm() {
-        initJags();
+        leftJ.setCurrentMode(C.P, C.I, C.D);
+        rightJ.setCurrentMode(C.P, C.I, C.D);
 
-        Encoder leftShaft = new Encoder(C.LEFT_WINCH_ENCODER_A,
-                C.LEFT_WINCH_ENCODER_B, false, EncodingType.k4X);
-        Encoder rightShaft = new Encoder(C.RIGHT_WINCH_ENCODER_A,
-                C.RIGHT_WINCH_ENCODER_B, false, EncodingType.k4X);
-
-        left = new PIDController(C.P, C.I, C.D, leftShaft, leftJ);
-        right = new PIDController(C.P, C.I, C.D, rightShaft, rightJ);
-
-        left.enable();
-        right.enable();
+        leftJ.enableControl();
+        rightJ.enableControl();
 
         level = C.START_LEVEL;
     }
 
-    private void initJags() {
-        leftJ = new CANJaguar(C.LEFT_WINCH_ADDRESS);
-        rightJ = new CANJaguar(C.RIGHT_WINCH_ADDRESS);
-
-        // leftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I,
-        // D);
-        // rightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P, I,
-        // D);
-        //
-        // leftJ.enableControl();
-        // rightJ.enableControl();
-    }
-
     public void set(double speed) {
-        left.setSetpoint(speed);
-        right.setSetpoint(speed);
+        leftJ.set(speed);
+        rightJ.set(speed);
     }
 
     public void setLevel(int level) {
