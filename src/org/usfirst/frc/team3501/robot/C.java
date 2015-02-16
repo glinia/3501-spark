@@ -7,7 +7,9 @@ public class C {
     final static int RIGHT_JOYSTICK_PORT = 3, LEFT_JOYSTICK_PORT = 2;
 
     final static double TOGGLE_TIME = 0.2;
-    final static int UP = 0, DOWN = 180, NOT_PRESSED = -1;
+    final static int UP = 0, UP_RIGHT = 45, RIGHT = 90, DOWN_RIGHT = 135,
+            DOWN = 180, DOWN_LEFT = 225, LEFT = 270, UP_LEFT = 315,
+            NOT_PRESSED = -1;
 
     // drivetrain
     final static int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
@@ -29,9 +31,6 @@ public class C {
 
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
-
-    final static int LEFT_WINCH_ENCODER_A = 0, LEFT_WINCH_ENCODER_B = 1,
-            RIGHT_WINCH_ENCODER_A = 2, RIGHT_WINCH_ENCODER_B = 3;
 
     // arm (heights in inches)
     final static int START_LEVEL = 0;
