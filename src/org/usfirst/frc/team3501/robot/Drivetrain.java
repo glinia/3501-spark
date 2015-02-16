@@ -55,7 +55,7 @@ public class Drivetrain {
 
     public void drive(double left, double right) {
         moveLeft(scale(left));
-        moveRight(scale(-right));
+        moveRight(scale(right));
     }
 
     private double scale(double speed) {

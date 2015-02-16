@@ -28,8 +28,8 @@ public class Robot extends IterativeRobot {
     }
 
     private void drive() {
-        double right = rightStick.getY();
-        double left = leftStick.getY();
+        double right = -rightStick.getY();
+        double left = -leftStick.getY();
 
         drivetrain.drive(right, left);
     }
