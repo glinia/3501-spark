@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -14,21 +15,29 @@ public class Robot extends IterativeRobot {
         leftStick = new FireStick(C.LEFT_JOYSTICK_PORT);
         rightStick = new FireStick(C.RIGHT_JOYSTICK_PORT);
 
+        if (rightStick.get(3))
+            C.P -= 0.05;
+        if (rightStick.get(4))
+            C.P += 0.05;
+
+        if (rightStick.get(1))
+            SmartDashboard.putNumber("P-val", C.P);
+
         drivetrain = new Drivetrain();
-        arm = new Arm();
-        claw = new Claw();
+        // arm = new Arm();
+        // claw = new Claw();
     }
 
     public void teleopPeriodic() {
-        buttonsPressed();
+        // buttonsPressed();
 
         drive();
-        arm.move();
-        claw.actuate();
+        // arm.move();
+        // claw.actuate();
     }
 
     private void drive() {
-        double left = -leftStick.getY();
+        double left = leftStick.getY();
         double right = -rightStick.getY();
 
         drivetrain.drive(left, right);

@@ -37,29 +37,11 @@ public class Drivetrain {
         frontRightJ = new CANJaguar(C.FRONT_RIGHT_ADDRESS);
         rearLeftJ = new CANJaguar(C.REAR_LEFT_ADDRESS);
         rearRightJ = new CANJaguar(C.REAR_RIGHT_ADDRESS);
-
-        // frontLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
-        // I, D);
-        // frontRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
-        // I, D);
-        // rearLeftJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
-        // I, D);
-        // rearRightJ.setCurrentMode(CANJaguar.kQuadEncoder, PULSES_PER_REV, P,
-        // I, D);
-        //
-        // frontLeftJ.enableControl();
-        // frontRightJ.enableControl();
-        // rearLeftJ.enableControl();
-        // rearRightJ.enableControl();
     }
 
     public void drive(double left, double right) {
-        moveLeft(scale(left));
-        moveRight(scale(right));
-    }
-
-    private double scale(double speed) {
-        return Math.abs(speed) * speed;
+        moveLeft(left);
+        moveRight(right);
     }
 
     private void moveLeft(double forward) {

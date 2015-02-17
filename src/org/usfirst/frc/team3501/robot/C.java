@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class C {
     // joystick control
-    final static int RIGHT_JOYSTICK_PORT = 3, LEFT_JOYSTICK_PORT = 2;
+    final static int LEFT_JOYSTICK_PORT = 0, RIGHT_JOYSTICK_PORT = 1;
 
     final static double TOGGLE_TIME = 0.2;
     final static int UP = 0, UP_RIGHT = 45, RIGHT = 90, DOWN_RIGHT = 135,
@@ -18,10 +18,10 @@ public class C {
     final static double ROBOT_CENTER_TO_WHEELS = 15.5,
             DIST_TO_ROTATE = ROBOT_CENTER_TO_WHEELS * 2 * Math.PI / 4;
 
-    final static int LEFT_DRIVE_ENCODER_A = 4, LEFT_DRIVE_ENCODER_B = 3,
-            RIGHT_DRIVE_ENCODER_A = 2, RIGHT_DRIVE_ENCODER_B = 1;
+    final static int LEFT_DRIVE_ENCODER_A = 3, LEFT_DRIVE_ENCODER_B = 4,
+            RIGHT_DRIVE_ENCODER_A = 1, RIGHT_DRIVE_ENCODER_B = 2;
 
-    final static double P = 0.1, I = 0.001, D = 0;
+    static double P = 1, I = 0, D = 0;
 
     final static int PULSES_PER_REV = 256;
 
