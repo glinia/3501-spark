@@ -32,6 +32,8 @@ public class C {
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
+    final static double ARM_SPEED = 0.5;
+
     // arm (heights in inches)
     final static int START_LEVEL = 0;
     final static int LOWEST_ARM_LEVEL = 0, HIGHEST_ARM_LEVEL = 5;

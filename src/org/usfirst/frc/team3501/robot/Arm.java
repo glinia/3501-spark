@@ -22,7 +22,7 @@ public class Arm {
     }
 
     public void set(double speed) {
-        leftJ.set(speed);
+        leftJ.set(-speed);
         rightJ.set(speed);
     }
 

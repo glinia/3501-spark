@@ -24,16 +24,16 @@ public class Robot extends IterativeRobot {
             SmartDashboard.putNumber("P-val", C.P);
 
         drivetrain = new Drivetrain();
-        // arm = new Arm();
-        // claw = new Claw();
+        arm = new Arm();
+        claw = new Claw();
     }
 
     public void teleopPeriodic() {
-        // buttonsPressed();
+        buttonsPressed();
 
         drive();
-        // arm.move();
-        // claw.actuate();
+        arm.move();
+        claw.actuate();
     }
 
     private void drive() {
@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
 
     private void buttonsPressed() {
         // trigger
-        if (rightStick.get(1))
+        if (rightStick.get(1) && claw.getState() == C.State.FREE)
             claw.close();
         else
             claw.open();
@@ -62,9 +62,9 @@ public class Robot extends IterativeRobot {
 
         // hat stick
         if (rightStick.getPOV() == C.UP)
-            arm.set(1);
+            arm.set(C.ARM_SPEED);
         else if (rightStick.getPOV() == C.DOWN)
-            arm.set(-1);
+            arm.set(-C.ARM_SPEED);
         else
             arm.set(0);
 
