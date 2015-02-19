@@ -45,10 +45,12 @@ public class Robot extends IterativeRobot {
 
     private void buttonsPressed() {
         // trigger
-        if (rightStick.get(1) && claw.getState() == C.State.FREE)
-            claw.close();
-        else
-            claw.open();
+        if (claw.getState() == C.State.FREE) {
+            if (rightStick.get(1))
+                claw.close();
+            else
+                claw.open();
+        }
 
         // thumb toggle
         if (rightStick.getToggleButton(2)) {
