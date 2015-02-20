@@ -53,4 +53,11 @@ public class Drivetrain {
         frontRight.setSetpoint(forward);
         rearRight.setSetpoint(forward);
     }
+
+    public void refreshPID() {
+        frontLeft.setPID(C.P, C.I, C.D);
+        rearLeft.setPID(C.P, C.I, C.D);
+        frontRight.setPID(C.P, C.I, C.D);
+        rearRight.setPID(C.P, C.I, C.D);
+    }
 }

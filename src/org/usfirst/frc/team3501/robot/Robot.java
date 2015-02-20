@@ -15,14 +15,6 @@ public class Robot extends IterativeRobot {
         leftStick = new FireStick(C.LEFT_JOYSTICK_PORT);
         rightStick = new FireStick(C.RIGHT_JOYSTICK_PORT);
 
-        if (rightStick.get(3))
-            C.P -= 0.05;
-        if (rightStick.get(4))
-            C.P += 0.05;
-
-        if (rightStick.get(1))
-            SmartDashboard.putNumber("P-val", C.P);
-
         drivetrain = new Drivetrain();
         arm = new Arm();
         claw = new Claw();
@@ -62,19 +54,44 @@ public class Robot extends IterativeRobot {
             }
         }
 
-        // hat stick
+        // arm movement / adjustment
         if (rightStick.getPOV() == C.UP)
             arm.set(C.ARM_SPEED);
         else if (rightStick.getPOV() == C.DOWN)
             arm.set(-C.ARM_SPEED);
-        else
+        else if (leftStick.get(6)) {
+            arm.leftJ.set(C.ARM_SPEED);
+            arm.rightJ.set(0);
+        } else if (leftStick.get(7)) {
+            arm.leftJ.set(-C.ARM_SPEED);
+            arm.rightJ.set(0);
+        } else if (leftStick.get(11)) {
+            arm.rightJ.set(C.ARM_SPEED);
+            arm.leftJ.set(0);
+        } else if (leftStick.get(10)) {
+            arm.rightJ.set(-C.ARM_SPEED);
+            arm.leftJ.set(0);
+        } else
             arm.set(0);
 
-        // top buttons
-        if (rightStick.getToggleButton(3))
-            arm.downLevel();
+        if (rightStick.get(3)) {
+            C.P -= 0.05;
+            drivetrain.refreshPID();
+        }
 
-        if (rightStick.getToggleButton(4))
-            arm.upLevel();
+        if (rightStick.get(4)) {
+            C.P += 0.05;
+            drivetrain.refreshPID();
+        }
+
+        System.out.println("pval: " + C.P);
+        SmartDashboard.putNumber("pval", C.P);
+
+        // // top buttons
+        // if (rightStick.getToggleButton(3))
+        // arm.downLevel();
+        //
+        // if (rightStick.getToggleButton(4))
+        // arm.upLevel();
     }
 }

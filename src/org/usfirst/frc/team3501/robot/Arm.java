@@ -4,19 +4,13 @@ import edu.wpi.first.wpilibj.CANJaguar;
 
 public class Arm {
 
-    private CANJaguar leftJ, rightJ;
+    public CANJaguar leftJ, rightJ;
 
     private int level;
 
     public Arm() {
         leftJ = new CANJaguar(C.LEFT_WINCH_ADDRESS);
         rightJ = new CANJaguar(C.RIGHT_WINCH_ADDRESS);
-
-        leftJ.setCurrentMode(C.P, C.I, C.D);
-        rightJ.setCurrentMode(C.P, C.I, C.D);
-
-        leftJ.enableControl();
-        rightJ.enableControl();
 
         level = C.START_LEVEL;
     }
