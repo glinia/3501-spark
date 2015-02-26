@@ -1,7 +1,8 @@
 package org.usfirst.frc.team3501.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
 
@@ -10,6 +11,7 @@ public class Robot extends IterativeRobot {
     private Drivetrain drivetrain;
     private Arm arm;
     private Claw claw;
+    private int count = 0;
 
     public void robotInit() {
         leftStick = new FireStick(C.LEFT_JOYSTICK_PORT);
@@ -24,8 +26,11 @@ public class Robot extends IterativeRobot {
         buttonsPressed();
 
         drive();
-        arm.move();
         claw.actuate();
+    }
+
+    public void testPeriodic() {
+        LiveWindow.run();
     }
 
     private void drive() {
@@ -59,39 +64,35 @@ public class Robot extends IterativeRobot {
             arm.set(C.ARM_SPEED);
         else if (rightStick.getPOV() == C.DOWN)
             arm.set(-C.ARM_SPEED);
-        else if (leftStick.get(6)) {
-            arm.leftJ.set(C.ARM_SPEED);
-            arm.rightJ.set(0);
-        } else if (leftStick.get(7)) {
-            arm.leftJ.set(-C.ARM_SPEED);
-            arm.rightJ.set(0);
-        } else if (leftStick.get(11)) {
-            arm.rightJ.set(C.ARM_SPEED);
-            arm.leftJ.set(0);
-        } else if (leftStick.get(10)) {
-            arm.rightJ.set(-C.ARM_SPEED);
-            arm.leftJ.set(0);
-        } else
+        else if (leftStick.get(6))
+            arm.moveLeft(C.ARM_SPEED);
+        else if (leftStick.get(7))
+            arm.moveLeft(-C.ARM_SPEED);
+        else if (leftStick.get(11))
+            arm.moveRight(C.ARM_SPEED);
+        else if (leftStick.get(10))
+            arm.moveRight(-C.ARM_SPEED);
+        else
             arm.set(0);
 
-        if (rightStick.get(3)) {
-            C.P -= 0.05;
+        if (rightStick.get(11) || rightStick.get(12))
+            claw.turnOff();
+
+        if (rightStick.get(7) || rightStick.get(8))
+            claw.turnOn();
+
+        if (rightStick.getToggleButton(3)) {
+            C.D -= 0.001;
             drivetrain.refreshPID();
         }
 
-        if (rightStick.get(4)) {
-            C.P += 0.05;
+        if (rightStick.getToggleButton(4)) {
+            C.D += 0.001;
             drivetrain.refreshPID();
         }
 
-        System.out.println("pval: " + C.P);
-        SmartDashboard.putNumber("pval", C.P);
-
-        // // top buttons
-        // if (rightStick.getToggleButton(3))
-        // arm.downLevel();
-        //
-        // if (rightStick.getToggleButton(4))
-        // arm.upLevel();
+        ++count;
+        if (count % 20 == 0)
+            DriverStation.reportError("D: " + C.D, false);
     }
 }

@@ -21,7 +21,7 @@ public class C {
     final static int LEFT_DRIVE_ENCODER_A = 3, LEFT_DRIVE_ENCODER_B = 4,
             RIGHT_DRIVE_ENCODER_A = 1, RIGHT_DRIVE_ENCODER_B = 2;
 
-    static double P = 1, I = 0, D = 0;
+    static double P = 1.1, I = 0, D = 0;
 
     final static int PULSES_PER_REV = 256;
 

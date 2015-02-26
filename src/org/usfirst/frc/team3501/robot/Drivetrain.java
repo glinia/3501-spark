@@ -9,13 +9,14 @@ public class Drivetrain {
 
     private CANJaguar frontLeftJ, frontRightJ, rearLeftJ, rearRightJ;
     private PIDController frontLeft, frontRight, rearLeft, rearRight;
+    public Encoder leftEncoder, rightEncoder;
 
     public Drivetrain() {
         initJags();
 
-        Encoder leftEncoder = new Encoder(C.LEFT_DRIVE_ENCODER_A,
+        leftEncoder = new Encoder(C.LEFT_DRIVE_ENCODER_A,
                 C.LEFT_DRIVE_ENCODER_B, false, EncodingType.k4X);
-        Encoder rightEncoder = new Encoder(C.RIGHT_DRIVE_ENCODER_A,
+        rightEncoder = new Encoder(C.RIGHT_DRIVE_ENCODER_A,
                 C.RIGHT_DRIVE_ENCODER_B, false, EncodingType.k4X);
 
         leftEncoder.setDistancePerPulse(C.DIST_PER_PULSE);

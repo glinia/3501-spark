@@ -12,7 +12,7 @@ public class FireStick extends Joystick {
 
     public boolean getToggleButton(int button) {
         boolean pressed = this.getRawButton(button)
-                       && !toggle.hasTimeLeft(button);
+                && !toggle.hasTimeLeft(button);
 
         if (pressed)
             toggle.addTimeout(button);

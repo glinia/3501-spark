@@ -15,9 +15,16 @@ public class Claw {
                 C.CLAW_REVERSE_CHANNEL);
 
         compressor = new Compressor();
-        compressor.start();
 
         state = C.State.FREE;
+    }
+
+    public void turnOff() {
+        compressor.stop();
+    }
+
+    public void turnOn() {
+        compressor.start();
     }
 
     public void open() {
