@@ -1,49 +1,49 @@
 package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.PIDController;
 
 public class Arm {
 
-    public CANJaguar leftJ, rightJ;
-
-    private int level;
+    private PIDController left, right;
+    private Lidar leftLidar, rightLidar;
 
     public Arm() {
-        leftJ = new CANJaguar(C.LEFT_WINCH_ADDRESS);
-        rightJ = new CANJaguar(C.RIGHT_WINCH_ADDRESS);
+        CANJaguar leftJ = new CANJaguar(C.LEFT_WINCH_ADDRESS);
+        CANJaguar rightJ = new CANJaguar(C.RIGHT_WINCH_ADDRESS);
 
-        level = C.START_LEVEL;
+        leftLidar = new Lidar(C.LEFT_LIDAR_PORT);
+        rightLidar = new Lidar(C.RIGHT_LIDAR_PORT);
+
+        left = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, leftLidar,
+                leftJ);
+        right = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, rightLidar,
+                rightJ);
+
+        left.enable();
+        right.enable();
     }
 
     public void set(double speed) {
-        leftJ.set(-speed);
-        rightJ.set(speed);
+        left.setSetpoint(-speed);
+        right.setSetpoint(speed);
     }
 
-    public void setLevel(int level) {
-        if (level > C.HIGHEST_ARM_LEVEL)
-            level = C.HIGHEST_ARM_LEVEL;
-
-        if (level < C.LOWEST_ARM_LEVEL)
-            level = C.LOWEST_ARM_LEVEL;
-
-        this.level = level;
+    public void moveLeft(double speed) {
+        left.setSetpoint(speed);
+        right.setSetpoint(0);
     }
 
-    public void upLevel() {
-        setLevel(level + 1);
+    public void moveRight(double speed) {
+        right.setSetpoint(speed);
+        left.setSetpoint(0);
     }
 
-    public void downLevel() {
-        setLevel(level - 1);
+    public double getDistance() {
+        double leftD = leftLidar.getDistance();
+        double rightD = rightLidar.getDistance();
+
+        return leftD;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void move() {
-        // if current position is too low, move up
-        // if current position is too high, move down
-    }
 }
