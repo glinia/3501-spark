@@ -12,4 +12,8 @@ public class Lidar extends AnalogInput {
         return getVoltage();
     }
 
+    public double pidGet() {
+        return 0;
+    }
+
 }

@@ -15,10 +15,8 @@ public class Arm {
         leftLidar = new Lidar(C.LEFT_LIDAR_PORT);
         rightLidar = new Lidar(C.RIGHT_LIDAR_PORT);
 
-        left = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, leftLidar,
-                leftJ);
-        right = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, rightLidar,
-                rightJ);
+        left = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, leftLidar, leftJ);
+        right = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, rightLidar, rightJ);
 
         left.enable();
         right.enable();
