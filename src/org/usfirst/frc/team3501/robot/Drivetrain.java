@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
+import static org.usfirst.frc.team3501.robot.C.*;
+
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -14,18 +16,29 @@ public class Drivetrain {
     public Drivetrain() {
         initJags();
 
-        leftEncoder = new Encoder(C.LEFT_DRIVE_ENCODER_A,
-                C.LEFT_DRIVE_ENCODER_B, false, EncodingType.k4X);
-        rightEncoder = new Encoder(C.RIGHT_DRIVE_ENCODER_A,
-                C.RIGHT_DRIVE_ENCODER_B, false, EncodingType.k4X);
+        leftEncoder = new Encoder(
+                LEFT_ENCODER_A, LEFT_ENCODER_B,
+                false, EncodingType.k4X);
 
-        leftEncoder.setDistancePerPulse(C.DIST_PER_PULSE);
-        rightEncoder.setDistancePerPulse(C.DIST_PER_PULSE);
+        rightEncoder = new Encoder(
+                RIGHT_ENCODER_A, RIGHT_ENCODER_B,
+                false, EncodingType.k4X);
 
-        frontLeft = new PIDController(C.P, C.I, C.D, leftEncoder, frontLeftJ);
-        frontRight = new PIDController(C.P, C.I, C.D, leftEncoder, frontRightJ);
-        rearLeft = new PIDController(C.P, C.I, C.D, rightEncoder, rearLeftJ);
-        rearRight = new PIDController(C.P, C.I, C.D, rightEncoder, rearRightJ);
+        leftEncoder.setDistancePerPulse(DIST_PER_PULSE);
+        rightEncoder.setDistancePerPulse(DIST_PER_PULSE);
+
+        frontLeft = new PIDController(
+                DRIVE_P, DRIVE_I, DRIVE_D,
+                leftEncoder, frontLeftJ);
+        frontRight = new PIDController(
+                DRIVE_P, DRIVE_I, DRIVE_D,
+                leftEncoder, frontRightJ);
+        rearLeft = new PIDController(
+                DRIVE_P, DRIVE_I, DRIVE_D,
+                rightEncoder, rearLeftJ);
+        rearRight = new PIDController(
+                DRIVE_P, DRIVE_I, DRIVE_D,
+                rightEncoder, rearRightJ);
 
         frontLeft.enable();
         frontRight.enable();
@@ -34,10 +47,10 @@ public class Drivetrain {
     }
 
     private void initJags() {
-        frontLeftJ = new CANJaguar(C.FRONT_LEFT_ADDRESS);
-        frontRightJ = new CANJaguar(C.FRONT_RIGHT_ADDRESS);
-        rearLeftJ = new CANJaguar(C.REAR_LEFT_ADDRESS);
-        rearRightJ = new CANJaguar(C.REAR_RIGHT_ADDRESS);
+        frontLeftJ = new CANJaguar(FRONT_LEFT_ADDRESS);
+        frontRightJ = new CANJaguar(FRONT_RIGHT_ADDRESS);
+        rearLeftJ = new CANJaguar(REAR_LEFT_ADDRESS);
+        rearRightJ = new CANJaguar(REAR_RIGHT_ADDRESS);
     }
 
     public void drive(double left, double right) {
@@ -56,9 +69,9 @@ public class Drivetrain {
     }
 
     public void refreshPID() {
-        frontLeft.setPID(C.P, C.I, C.D);
-        rearLeft.setPID(C.P, C.I, C.D);
-        frontRight.setPID(C.P, C.I, C.D);
-        rearRight.setPID(C.P, C.I, C.D);
+        frontLeft.setPID(DRIVE_P, DRIVE_I, DRIVE_D);
+        rearLeft.setPID(DRIVE_P, DRIVE_I, DRIVE_D);
+        frontRight.setPID(DRIVE_P, DRIVE_I, DRIVE_D);
+        rearRight.setPID(DRIVE_P, DRIVE_I, DRIVE_D);
     }
 }

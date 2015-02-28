@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
+import static org.usfirst.frc.team3501.robot.C.*;
+
 import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -26,7 +28,7 @@ public class Toggle {
     public boolean hasTimeLeft(int button) {
         Timer timer = getTimeout(button);
 
-        return timer != null && timer.get() < C.TOGGLE_TIME;
+        return timer != null && timer.get() < TOGGLE_TIME;
     }
 
 }

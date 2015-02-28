@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3501.robot;
 
+import static org.usfirst.frc.team3501.robot.C.*;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.PIDController;
 
@@ -9,14 +10,14 @@ public class Arm {
     private Lidar leftLidar, rightLidar;
 
     public Arm() {
-        CANJaguar leftJ = new CANJaguar(C.LEFT_WINCH_ADDRESS);
-        CANJaguar rightJ = new CANJaguar(C.RIGHT_WINCH_ADDRESS);
+        CANJaguar leftJ = new CANJaguar(LEFT_WINCH_ADDRESS);
+        CANJaguar rightJ = new CANJaguar(RIGHT_WINCH_ADDRESS);
 
-        leftLidar = new Lidar(C.LEFT_LIDAR_PORT);
-        rightLidar = new Lidar(C.RIGHT_LIDAR_PORT);
+        leftLidar = new Lidar(LEFT_LIDAR_PORT);
+        rightLidar = new Lidar(RIGHT_LIDAR_PORT);
 
-        left = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, leftLidar, leftJ);
-        right = new PIDController(C.ARM_P, C.ARM_I, C.ARM_D, rightLidar, rightJ);
+        left = new PIDController(ARM_P, ARM_I, ARM_D, leftLidar, leftJ);
+        right = new PIDController(ARM_P, ARM_I, ARM_D, rightLidar, rightJ);
 
         left.enable();
         right.enable();
