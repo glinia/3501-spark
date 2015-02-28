@@ -2,21 +2,21 @@ package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import static org.usfirst.frc.team3501.robot.Consts.*;
 
 public class Claw {
 
     private DoubleSolenoid claw;
     private Compressor compressor;
 
-    private C.State state;
+    private State state;
 
     public Claw() {
-        claw = new DoubleSolenoid(C.CLAW_FORWARD_CHANNEL,
-                C.CLAW_REVERSE_CHANNEL);
+        claw = new DoubleSolenoid(CLAW_FORWARD_CHANNEL, CLAW_REVERSE_CHANNEL);
 
         compressor = new Compressor();
 
-        state = C.State.FREE;
+        state = State.FREE;
     }
 
     public void turnOff() {
@@ -28,23 +28,23 @@ public class Claw {
     }
 
     public void open() {
-        claw.set(C.OPEN);
+        claw.set(OPEN);
     }
 
     public void close() {
-        claw.set(C.CLOSE);
+        claw.set(CLOSE);
     }
 
     public void actuate() {
-        if (state == C.State.CLOSED)
+        if (state == State.CLOSED)
             close();
     }
 
-    public void setState(C.State s) {
+    public void setState(State s) {
         state = s;
     }
 
-    public C.State getState() {
+    public State getState() {
         return state;
     }
 }

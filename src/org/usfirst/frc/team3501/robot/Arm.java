@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3501.robot;
 
-import static org.usfirst.frc.team3501.robot.C.*;
+import static org.usfirst.frc.team3501.robot.Consts.*;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.PIDController;
 
@@ -43,6 +43,16 @@ public class Arm {
         double rightD = rightLidar.getDistance();
 
         return leftD;
+    }
+
+    public void addSpeed(double val) {
+        ARM_SPEED += val;
+
+        if (ARM_SPEED > 1)
+            ARM_SPEED = 1;
+
+        if (ARM_SPEED < 0)
+            ARM_SPEED = 0;
     }
 
 }

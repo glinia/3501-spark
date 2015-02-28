@@ -2,7 +2,7 @@ package org.usfirst.frc.team3501.robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class C {
+public class Consts {
     // joystick control
     final static int LEFT_JOYSTICK_PORT = 0, RIGHT_JOYSTICK_PORT = 1;
 
@@ -18,7 +18,7 @@ public class C {
     final static int LEFT_ENCODER_A = 3, LEFT_ENCODER_B = 4,
             RIGHT_ENCODER_A = 1, RIGHT_ENCODER_B = 2;
 
-    static double DRIVE_P = 1.1, DRIVE_I = 0, DRIVE_D = 0;
+    static double DRIVE_P = 0.9, DRIVE_I = 0, DRIVE_D = 0;
 
     final static int PULSES_PER_REV = 256;
 
@@ -30,12 +30,13 @@ public class C {
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
     static double ARM_SPEED = 0.5;
+    final static double ARM_ADJUST_SPEED = 0.3;
 
     // arm (heights in inches)
 
     final static int LEFT_LIDAR_PORT = 1, RIGHT_LIDAR_PORT = 2;
 
-    final static double ARM_P = 0.3, ARM_I = 0, ARM_D = 0;
+    final static double ARM_P = 1, ARM_I = 0, ARM_D = 0;
 
     // claw
     final static int CLAW_FORWARD_CHANNEL = 0, CLAW_REVERSE_CHANNEL = 1;

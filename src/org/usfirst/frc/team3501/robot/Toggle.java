@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3501.robot;
 
-import static org.usfirst.frc.team3501.robot.C.*;
+import static org.usfirst.frc.team3501.robot.Consts.*;
 
 import java.util.HashMap;
 

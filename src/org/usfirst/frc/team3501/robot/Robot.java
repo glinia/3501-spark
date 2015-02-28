@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3501.robot;
 
-import static org.usfirst.frc.team3501.robot.C.*;
-
+import static org.usfirst.frc.team3501.robot.Consts.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -33,8 +32,9 @@ public class Robot extends IterativeRobot {
         drive();
         claw.actuate();
 
-        if (count % 20 == 0)
+        if (count++ % 20 == 0) {
             DriverStation.reportError("arm speed: " + ARM_SPEED, false);
+        }
     }
 
     public void testPeriodic() {
@@ -42,10 +42,10 @@ public class Robot extends IterativeRobot {
     }
 
     private void drive() {
-        double left = leftStick.getY();
-        double right = -rightStick.getY();
+        double forward = rightStick.getY();
+        double twist = rightStick.getTwist();
 
-        drivetrain.drive(left, right);
+        drivetrain.drive(forward, twist);
     }
 
     private void buttonsPressed() {
@@ -59,12 +59,10 @@ public class Robot extends IterativeRobot {
 
         // thumb toggle
         if (rightStick.getToggleButton(2)) {
-            switch (claw.getState()) {
-            case FREE:
+            if (claw.getState() == State.FREE)
                 claw.setState(State.CLOSED);
-            default:
+            else if (claw.getState() == State.CLOSED)
                 claw.setState(State.FREE);
-            }
         }
 
         // arm movement / adjustment
@@ -73,13 +71,13 @@ public class Robot extends IterativeRobot {
         else if (rightStick.isPOV(DOWN))
             arm.set(-ARM_SPEED);
         else if (leftStick.get(7))
-            arm.moveLeft(ARM_SPEED);
+            arm.moveLeft(ARM_ADJUST_SPEED);
         else if (leftStick.get(6))
-            arm.moveLeft(-ARM_SPEED);
+            arm.moveLeft(-ARM_ADJUST_SPEED);
         else if (leftStick.get(11))
-            arm.moveRight(ARM_SPEED);
+            arm.moveRight(ARM_ADJUST_SPEED);
         else if (leftStick.get(10))
-            arm.moveRight(-ARM_SPEED);
+            arm.moveRight(-ARM_ADJUST_SPEED);
         else
             arm.set(0);
 
@@ -90,9 +88,9 @@ public class Robot extends IterativeRobot {
             claw.turnOn();
 
         if (rightStick.getToggleButton(3))
-            ARM_SPEED -= 0.1;
+            arm.addSpeed(-0.1);
 
         if (rightStick.getToggleButton(4))
-            ARM_SPEED += 0.1;
+            arm.addSpeed(0.1);
     }
 }
