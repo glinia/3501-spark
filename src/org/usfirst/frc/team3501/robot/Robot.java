@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3501.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -11,7 +10,8 @@ public class Robot extends IterativeRobot {
     private Drivetrain drivetrain;
     private Arm arm;
     private Claw claw;
-    private int count = 0;
+
+    private int count;
 
     public void robotInit() {
         leftStick = new FireStick(C.LEFT_JOYSTICK_PORT);
@@ -20,6 +20,8 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm = new Arm();
         claw = new Claw();
+
+        count = 0;
     }
 
     public void teleopPeriodic() {
@@ -60,13 +62,13 @@ public class Robot extends IterativeRobot {
         }
 
         // arm movement / adjustment
-        if (rightStick.getPOV() == C.UP)
+        if (rightStick.isPOV(C.UP))
             arm.set(C.ARM_SPEED);
-        else if (rightStick.getPOV() == C.DOWN)
+        else if (rightStick.isPOV(C.DOWN))
             arm.set(-C.ARM_SPEED);
-        else if (leftStick.get(6))
-            arm.moveLeft(C.ARM_SPEED);
         else if (leftStick.get(7))
+            arm.moveLeft(C.ARM_SPEED);
+        else if (leftStick.get(6))
             arm.moveLeft(-C.ARM_SPEED);
         else if (leftStick.get(11))
             arm.moveRight(C.ARM_SPEED);
@@ -75,24 +77,16 @@ public class Robot extends IterativeRobot {
         else
             arm.set(0);
 
-        if (rightStick.get(11) || rightStick.get(12))
+        if (rightStick.getOne(11, 12))
             claw.turnOff();
 
-        if (rightStick.get(7) || rightStick.get(8))
+        if (rightStick.getOne(7, 8))
             claw.turnOn();
 
-        if (rightStick.getToggleButton(3)) {
-            C.D -= 0.001;
-            drivetrain.refreshPID();
-        }
+        if (rightStick.getToggleButton(3))
+            C.ARM_SPEED -= 0.1;
 
-        if (rightStick.getToggleButton(4)) {
-            C.D += 0.001;
-            drivetrain.refreshPID();
-        }
-
-        ++count;
-        if (count % 20 == 0)
-            DriverStation.reportError("D: " + C.D, false);
+        if (rightStick.getToggleButton(4))
+            C.ARM_SPEED += 0.1;
     }
 }

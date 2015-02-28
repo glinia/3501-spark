@@ -8,9 +8,6 @@ public class Toggle {
 
     private HashMap<Integer, Timer> timeouts;
 
-    /*
-     * WARNING: this only works with one joystick for the moment
-     */
     public Toggle() {
         timeouts = new HashMap<Integer, Timer>();
     }
@@ -27,8 +24,9 @@ public class Toggle {
     }
 
     public boolean hasTimeLeft(int button) {
-        return timeouts.get(button) != null
-                && timeouts.get(button).get() < C.TOGGLE_TIME;
+        Timer timer = getTimeout(button);
+
+        return timer != null && timer.get() < C.TOGGLE_TIME;
     }
 
 }

@@ -9,7 +9,7 @@ public class Drivetrain {
 
     private CANJaguar frontLeftJ, frontRightJ, rearLeftJ, rearRightJ;
     private PIDController frontLeft, frontRight, rearLeft, rearRight;
-    public Encoder leftEncoder, rightEncoder;
+    private Encoder leftEncoder, rightEncoder;
 
     public Drivetrain() {
         initJags();

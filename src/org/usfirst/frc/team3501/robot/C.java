@@ -29,7 +29,7 @@ public class C {
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
-    final static double ARM_SPEED = 0.5;
+    static double ARM_SPEED = 0.5;
 
     // arm (heights in inches)
 
@@ -40,7 +40,7 @@ public class C {
     // claw
     final static int CLAW_FORWARD_CHANNEL = 0, CLAW_REVERSE_CHANNEL = 1;
 
-    final static Value OPEN = Value.kForward, CLOSE = Value.kReverse;
+    final static Value CLOSE = Value.kForward, OPEN = Value.kReverse;
 
     static enum State {
         FREE, CLOSED

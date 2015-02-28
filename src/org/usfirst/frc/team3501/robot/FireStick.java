@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
+import java.util.Arrays;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 public class FireStick extends Joystick {
@@ -10,9 +12,16 @@ public class FireStick extends Joystick {
         toggle = new Toggle();
     }
 
+    public boolean isPOV(int dir) {
+        return getPOV() == dir;
+    }
+
+    public boolean get(int button) {
+        return getRawButton(button);
+    }
+
     public boolean getToggleButton(int button) {
-        boolean pressed = this.getRawButton(button)
-                && !toggle.hasTimeLeft(button);
+        boolean pressed = get(button) && !toggle.hasTimeLeft(button);
 
         if (pressed)
             toggle.addTimeout(button);
@@ -20,7 +29,7 @@ public class FireStick extends Joystick {
         return pressed;
     }
 
-    public boolean get(int button) {
-        return this.getRawButton(button);
+    public boolean getOne(int... buttons) {
+        return Arrays.stream(buttons).anyMatch(b -> get(b));
     }
 }
