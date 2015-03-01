@@ -10,13 +10,13 @@ public class Arm {
     private Lidar leftLidar, rightLidar;
 
     public Arm() {
-        CANJaguar leftJ = new CANJaguar(LEFT_WINCH_ADDRESS);
+        CANJaguar leftJ  = new CANJaguar(LEFT_WINCH_ADDRESS);
         CANJaguar rightJ = new CANJaguar(RIGHT_WINCH_ADDRESS);
 
-        leftLidar = new Lidar(LEFT_LIDAR_PORT);
+        leftLidar  = new Lidar(LEFT_LIDAR_PORT);
         rightLidar = new Lidar(RIGHT_LIDAR_PORT);
 
-        left = new PIDController(ARM_P, ARM_I, ARM_D, leftLidar, leftJ);
+        left  = new PIDController(ARM_P, ARM_I, ARM_D, leftLidar,  leftJ);
         right = new PIDController(ARM_P, ARM_I, ARM_D, rightLidar, rightJ);
 
         left.enable();
@@ -39,8 +39,7 @@ public class Arm {
     }
 
     public double getDistance() {
-        double leftD = leftLidar.getDistance();
-        double rightD = rightLidar.getDistance();
+        double leftD  = leftLidar.getDistance();
 
         return leftD;
     }

@@ -28,7 +28,8 @@ public class Toggle {
     public boolean hasTimeLeft(int button) {
         Timer timer = getTimeout(button);
 
-        return timer != null && timer.get() < TOGGLE_TIME;
+        return timer != null
+            && timer.get() < TOGGLE_TIME;
     }
 
 }

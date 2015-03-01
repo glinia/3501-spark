@@ -10,13 +10,13 @@ public class Drivetrain {
     private RobotDrive robotDrive;
 
     public Drivetrain() {
-        CANJaguar frontLeft = new CANJaguar(FRONT_LEFT_ADDRESS);
+        CANJaguar frontLeft  = new CANJaguar(FRONT_LEFT_ADDRESS);
         CANJaguar frontRight = new CANJaguar(FRONT_RIGHT_ADDRESS);
-        CANJaguar rearLeft = new CANJaguar(REAR_LEFT_ADDRESS);
-        CANJaguar rearRight = new CANJaguar(REAR_RIGHT_ADDRESS);
+        CANJaguar rearLeft   = new CANJaguar(REAR_LEFT_ADDRESS);
+        CANJaguar rearRight  = new CANJaguar(REAR_RIGHT_ADDRESS);
 
         robotDrive = new RobotDrive(
-                frontLeft, rearLeft,
+                frontLeft,  rearLeft,
                 frontRight, rearRight);
     }
 

@@ -13,10 +13,10 @@ public class Consts {
 
     // drivetrain
     final static int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
-            REAR_LEFT_ADDRESS = 3, REAR_RIGHT_ADDRESS = 6;
+                     REAR_LEFT_ADDRESS  = 3, REAR_RIGHT_ADDRESS  = 6;
 
-    final static int LEFT_ENCODER_A = 3, LEFT_ENCODER_B = 4,
-            RIGHT_ENCODER_A = 1, RIGHT_ENCODER_B = 2;
+    final static int LEFT_ENCODER_A  = 3, LEFT_ENCODER_B  = 4,
+                     RIGHT_ENCODER_A = 1, RIGHT_ENCODER_B = 2;
 
     static double DRIVE_P = 0.9, DRIVE_I = 0, DRIVE_D = 0;
 

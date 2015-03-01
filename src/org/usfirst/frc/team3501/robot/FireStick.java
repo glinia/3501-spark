@@ -5,6 +5,7 @@ import java.util.Arrays;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class FireStick extends Joystick {
+
     private Toggle toggle;
 
     public FireStick(int port) {
@@ -21,7 +22,8 @@ public class FireStick extends Joystick {
     }
 
     public boolean getToggleButton(int button) {
-        boolean pressed = get(button) && !toggle.hasTimeLeft(button);
+        boolean pressed = get(button)
+                && !toggle.hasTimeLeft(button);
 
         if (pressed)
             toggle.addTimeout(button);

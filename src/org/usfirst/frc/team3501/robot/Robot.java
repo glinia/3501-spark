@@ -16,12 +16,12 @@ public class Robot extends IterativeRobot {
     private int count;
 
     public void robotInit() {
-        leftStick = new FireStick(LEFT_JOYSTICK_PORT);
+        leftStick  = new FireStick(LEFT_JOYSTICK_PORT);
         rightStick = new FireStick(RIGHT_JOYSTICK_PORT);
 
         drivetrain = new Drivetrain();
-        arm = new Arm();
-        claw = new Claw();
+        arm        = new Arm();
+        claw       = new Claw();
 
         count = 0;
     }
