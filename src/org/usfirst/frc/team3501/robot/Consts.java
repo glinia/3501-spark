@@ -12,6 +12,8 @@ public class Consts {
             NOT_PRESSED = -1;
 
     // drivetrain
+    final static double MIN_DRIVE_JOYSTICK_INPUT = 0.1;
+
     final static int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
                      REAR_LEFT_ADDRESS  = 3, REAR_RIGHT_ADDRESS  = 6;
 
@@ -29,8 +31,9 @@ public class Consts {
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
-    static double ARM_SPEED = 0.5;
     final static double ARM_ADJUST_SPEED = 0.3;
+
+    final static double MIN_ARM_JOYSTICK_INPUT = 0.2;
 
     // arm (heights in inches)
 

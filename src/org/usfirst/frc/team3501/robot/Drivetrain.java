@@ -26,6 +26,11 @@ public class Drivetrain {
     }
 
     public void drive(double forward, double twist) {
+        if (Math.abs(forward) < MIN_DRIVE_JOYSTICK_INPUT)
+            forward = 0;
+        if (Math.abs(twist) < MIN_DRIVE_JOYSTICK_INPUT)
+            twist = 0;
+
         robotDrive.arcadeDrive(adjust(forward), adjust(twist), false);
     }
 }
