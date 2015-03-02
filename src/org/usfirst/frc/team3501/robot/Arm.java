@@ -13,8 +13,8 @@ public class Arm {
         CANJaguar leftJ  = new CANJaguar(LEFT_WINCH_ADDRESS);
         CANJaguar rightJ = new CANJaguar(RIGHT_WINCH_ADDRESS);
 
-        leftLidar  = new Lidar(LEFT_LIDAR_PORT);
-        rightLidar = new Lidar(RIGHT_LIDAR_PORT);
+        leftLidar  = new Lidar(LEFT_LIDAR_ANALOG);
+        rightLidar = new Lidar(RIGHT_LIDAR_ANALOG);
 
         left  = new PIDController(ARM_P, ARM_I, ARM_D, leftLidar,  leftJ);
         right = new PIDController(ARM_P, ARM_I, ARM_D, rightLidar, rightJ);
@@ -40,18 +40,16 @@ public class Arm {
 
     public double getDistance() {
         double leftD  = leftLidar.getDistance();
+        double rightD = rightLidar.getDistance();
 
-        return leftD;
+        return (leftD + rightD) / 2;
     }
 
-    public void addSpeed(double val) {
-        ARM_SPEED += val;
+    public void setSpeedFromJoystick(double speed) {
+        if (Math.abs(speed) < MIN_ARM_JOYSTICK_INPUT)
+            speed = 0;
 
-        if (ARM_SPEED > 1)
-            ARM_SPEED = 1;
-
-        if (ARM_SPEED < 0)
-            ARM_SPEED = 0;
+        set(speed);
     }
 
 }

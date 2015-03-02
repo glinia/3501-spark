@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
 import static org.usfirst.frc.team3501.robot.Consts.*;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -12,6 +13,8 @@ public class Robot extends IterativeRobot {
     private Arm arm;
     private Claw claw;
 
+    private int count;
+
     public void robotInit() {
         leftStick  = new FireStick(LEFT_JOYSTICK_PORT);
         rightStick = new FireStick(RIGHT_JOYSTICK_PORT);
@@ -19,13 +22,21 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm        = new Arm();
         claw       = new Claw();
+
+        count = 0;
     }
 
     public void teleopPeriodic() {
         buttonsPressed();
 
         drive();
+
+        arm.setSpeedFromJoystick(-leftStick.getY());
         claw.actuate();
+
+        if (count++ % 20 == 0) {
+            DriverStation.reportError("dist: " + arm.getDistance(), false);
+        }
     }
 
     public void testPeriodic() {
@@ -34,14 +45,16 @@ public class Robot extends IterativeRobot {
 
     private void drive() {
         double forward = rightStick.getY();
-        double twist = rightStick.getTwist();
+        double twist   = rightStick.getTwist();
 
         drivetrain.drive(forward, twist);
     }
 
     private void buttonsPressed() {
+        State clawState = claw.getState();
+
         // trigger
-        if (claw.getState() == State.FREE) {
+        if (clawState == State.FREE) {
             if (rightStick.get(1))
                 claw.close();
             else
@@ -50,15 +63,13 @@ public class Robot extends IterativeRobot {
 
         // thumb toggle
         if (rightStick.getToggleButton(2)) {
-            if (claw.getState() == State.FREE)
+            if (clawState == State.FREE)
                 claw.setState(State.CLOSED);
-            else if (claw.getState() == State.CLOSED)
+            else if (clawState == State.CLOSED)
                 claw.setState(State.FREE);
         }
 
         // arm movement / adjustment
-        setArmSpeed();
-
         if (leftStick.get(7))
             arm.moveLeft(ARM_ADJUST_SPEED);
         else if (leftStick.get(6))
@@ -75,11 +86,4 @@ public class Robot extends IterativeRobot {
             claw.turnOn();
     }
 
-    private void setArmSpeed() {
-        double y = -leftStick.getY();
-        if (Math.abs(y) < MIN_ARM_JOYSTICK_INPUT)
-            y = 0;
-
-        arm.set(y);
-    }
 }

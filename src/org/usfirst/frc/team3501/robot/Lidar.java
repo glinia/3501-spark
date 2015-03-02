@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj.AnalogInput;
 
 public class Lidar extends AnalogInput {
 
-    public Lidar(int channel) {
-        super(channel);
+    public Lidar(int inputChannel) {
+        super(inputChannel);
     }
 
     public double getDistance() {
-        return getVoltage();
+        return getAverageVoltage();
     }
 
     public double pidGet() {

@@ -22,12 +22,6 @@ public class Consts {
 
     static double DRIVE_P = 0.9, DRIVE_I = 0, DRIVE_D = 0;
 
-    final static int PULSES_PER_REV = 256;
-
-    // dist wheel goes per encoder pulse
-    final static double DIST_PER_PULSE = ((3.66 / 5.14) * 12 * Math.PI)
-            / PULSES_PER_REV;
-
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
@@ -37,7 +31,8 @@ public class Consts {
 
     // arm (heights in inches)
 
-    final static int LEFT_LIDAR_PORT = 1, RIGHT_LIDAR_PORT = 2;
+    final static int LEFT_LIDAR_PWM  = 1, LEFT_LIDAR_ANALOG  = 3,
+                     RIGHT_LIDAR_PWM = 2, RIGHT_LIDAR_ANALOG = 0;
 
     final static double ARM_P = 1, ARM_I = 0, ARM_D = 0;
 
