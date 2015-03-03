@@ -34,3 +34,8 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+# custom stuff that seems unnecessary
+build/
+dist/
+sysProps.xml
