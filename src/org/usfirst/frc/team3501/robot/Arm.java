@@ -38,18 +38,19 @@ public class Arm {
         left.setSetpoint(0);
     }
 
-    public double getDistance() {
+    public String getDistance() {
         double leftD  = leftLidar.getDistance();
         double rightD = rightLidar.getDistance();
 
-        return (leftD + rightD) / 2;
+        return "l: " + leftD + " r: " + rightD;
+//        return (leftD + rightD) / 2;
     }
 
-    public void setSpeedFromJoystick(double speed) {
+    public double getSpeedFromJoystick(double speed) {
         if (Math.abs(speed) < MIN_ARM_JOYSTICK_INPUT)
             speed = 0;
 
-        set(speed);
+        return speed;
     }
 
 }

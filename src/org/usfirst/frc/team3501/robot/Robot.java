@@ -30,8 +30,6 @@ public class Robot extends IterativeRobot {
         buttonsPressed();
 
         drive();
-
-        arm.setSpeedFromJoystick(-leftStick.getY());
         claw.actuate();
 
         if (count++ % 20 == 0) {
@@ -52,6 +50,9 @@ public class Robot extends IterativeRobot {
 
     private void buttonsPressed() {
         State clawState = claw.getState();
+
+        // arm speed from joystick
+        double setSpeed = arm.getSpeedFromJoystick(-leftStick.getY());
 
         // trigger
         if (clawState == State.FREE) {
@@ -78,6 +79,8 @@ public class Robot extends IterativeRobot {
             arm.moveRight(ARM_ADJUST_SPEED);
         else if (leftStick.get(10))
             arm.moveRight(-ARM_ADJUST_SPEED);
+        else
+            arm.set(setSpeed);
 
         if (rightStick.getOne(11, 12))
             claw.turnOff();
