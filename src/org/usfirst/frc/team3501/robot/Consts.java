@@ -17,24 +17,12 @@ public class Consts {
     final static int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
                      REAR_LEFT_ADDRESS  = 3, REAR_RIGHT_ADDRESS  = 6;
 
-    final static int LEFT_ENCODER_A  = 3, LEFT_ENCODER_B  = 4,
-                     RIGHT_ENCODER_A = 1, RIGHT_ENCODER_B = 2;
-
-    static double DRIVE_P = 0.9, DRIVE_I = 0, DRIVE_D = 0;
-
     // winch
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
     final static double ARM_ADJUST_SPEED = 0.3;
 
-    final static double MIN_ARM_JOYSTICK_INPUT = 0.2;
-
-    // arm (heights in inches)
-
-    final static int LEFT_LIDAR_PWM  = 1, LEFT_LIDAR_ANALOG  = 3,
-                     RIGHT_LIDAR_PWM = 2, RIGHT_LIDAR_ANALOG = 0;
-
-    final static double ARM_P = 1, ARM_I = 0, ARM_D = 0;
+    final static double MIN_ARM_JOYSTICK_INPUT = 0.1;
 
     // claw
     final static int CLAW_FORWARD_CHANNEL = 0, CLAW_REVERSE_CHANNEL = 1;
