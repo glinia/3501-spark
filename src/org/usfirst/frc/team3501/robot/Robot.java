@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
 
-    private FireStick leftStick, rightStick;
+    private Joystick leftStick, rightStick;
 
     private Drivetrain drivetrain;
     private Arm arm;
     private Claw claw;
 
     public void robotInit() {
-        leftStick  = new FireStick(LEFT_JOYSTICK_PORT);
-        rightStick = new FireStick(RIGHT_JOYSTICK_PORT);
+        leftStick  = new Joystick(LEFT_JOYSTICK_PORT);
+        rightStick = new Joystick(RIGHT_JOYSTICK_PORT);
 
         drivetrain = new Drivetrain();
         arm        = new Arm();
