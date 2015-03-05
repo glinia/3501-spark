@@ -36,6 +36,9 @@ public class Robot extends IterativeRobot {
         double forward = rightStick.getY();
         double twist   = rightStick.getTwist();
 
+        if (rightStick.getOne(3, 4, 5, 6))
+            twist = 0;
+
         drivetrain.drive(forward, twist);
     }
 
