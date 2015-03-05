@@ -14,10 +14,12 @@ public class Consts {
     // drivetrain
     final static double MIN_DRIVE_JOYSTICK_INPUT = 0.1;
 
+    final static double MAX_DRIVE_SPEED = 0.7;
+
     final static int FRONT_LEFT_ADDRESS = 4, FRONT_RIGHT_ADDRESS = 5,
                      REAR_LEFT_ADDRESS  = 3, REAR_RIGHT_ADDRESS  = 6;
 
-    // winch
+    // winch & arm
     final static int LEFT_WINCH_ADDRESS = 2, RIGHT_WINCH_ADDRESS = 7;
 
     final static double ARM_ADJUST_SPEED = 0.3;
