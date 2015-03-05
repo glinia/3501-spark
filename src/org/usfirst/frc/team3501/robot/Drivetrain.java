@@ -31,6 +31,6 @@ public class Drivetrain {
         if (Math.abs(twist) < MIN_DRIVE_JOYSTICK_INPUT)
             twist = 0;
 
-        robotDrive.arcadeDrive(adjust(forward), adjust(twist), false);
+        robotDrive.arcadeDrive(0.7 * adjust(forward), 0.7 * adjust(twist), false);
     }
 }

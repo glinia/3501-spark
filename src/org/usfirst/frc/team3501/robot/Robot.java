@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3501.robot;
 
 import static org.usfirst.frc.team3501.robot.Consts.*;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -13,8 +12,6 @@ public class Robot extends IterativeRobot {
     private Arm arm;
     private Claw claw;
 
-    private int count;
-
     public void robotInit() {
         leftStick  = new FireStick(LEFT_JOYSTICK_PORT);
         rightStick = new FireStick(RIGHT_JOYSTICK_PORT);
@@ -22,8 +19,6 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm        = new Arm();
         claw       = new Claw();
-
-        count = 0;
     }
 
     public void teleopPeriodic() {
@@ -31,10 +26,6 @@ public class Robot extends IterativeRobot {
 
         drive();
         claw.actuate();
-
-        if (count++ % 20 == 0) {
-            DriverStation.reportError("dist: " + arm.getDistance(), false);
-        }
     }
 
     public void testPeriodic() {
