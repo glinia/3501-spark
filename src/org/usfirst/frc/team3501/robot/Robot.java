@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
 import static org.usfirst.frc.team3501.robot.Consts.*;
-
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -14,6 +14,8 @@ public class Robot extends IterativeRobot {
     private Claw claw;
     private Pusher pusher;
 
+    private Lidar lidar;
+
     public void robotInit() {
         leftStick  = new Joystick(LEFT_JOYSTICK_PORT);
         rightStick = new Joystick(RIGHT_JOYSTICK_PORT);
@@ -22,6 +24,8 @@ public class Robot extends IterativeRobot {
         arm        = new Arm();
         claw       = new Claw();
         pusher     = new Pusher();
+
+        lidar = new Lidar();
     }
 
     public void teleopPeriodic() {
@@ -89,6 +93,10 @@ public class Robot extends IterativeRobot {
             pusher.open();
         else
             pusher.close();
+
+        // lidar info
+        if (leftStick.getOne(4, 5))
+            DriverStation.reportError("voltage: " + lidar.getVoltage(), false);
     }
 
 }

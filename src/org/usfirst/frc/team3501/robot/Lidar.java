@@ -10,6 +10,7 @@ import static org.usfirst.frc.team3501.robot.Consts.*;
 public class Lidar {
 
     private AnalogInput lidar;
+
     private ArrayList<Double> vals;
 
     public Lidar() {
