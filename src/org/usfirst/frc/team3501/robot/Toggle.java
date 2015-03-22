@@ -26,10 +26,15 @@ public class Toggle {
     }
 
     public boolean hasTimeLeft(int button) {
+        return hasTimeLeft(button, TOGGLE_TIME);
+    }
+
+    public boolean hasTimeLeft(int button, double time) {
         Timer timer = getTimeout(button);
 
         return timer != null
-            && timer.get() < TOGGLE_TIME;
+            && timer.get() < time;
     }
+
 
 }

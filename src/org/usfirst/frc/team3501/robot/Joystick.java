@@ -29,7 +29,18 @@ public class Joystick extends edu.wpi.first.wpilibj.Joystick {
         return pressed;
     }
 
+    public boolean getTimedAction(int button, double secs) {
+        getToggleButton(button);
+
+        return toggle.hasTimeLeft(button, secs);
+    }
+
     public boolean getOne(int... buttons) {
         return Arrays.stream(buttons).anyMatch(b -> get(b));
     }
+
+    public boolean getOneTimed(double secs, int... buttons) {
+        return Arrays.stream(buttons).anyMatch(b -> getTimedAction(b, secs));
+    }
+
 }
