@@ -34,4 +34,11 @@ public class Consts {
     static enum State {
         FREE, CLOSED
     }
+
+    // pusher
+    final static int    PUSHER_FORWARD_CHANNEL = 2, PUSHER_REVERSE_CHANNEL = 3;
+    final static double PUSH_FORWARD_SECS = 1;
+
+    // lidar
+    final static int LIDAR_ANALOG_PORT = 0;
 }

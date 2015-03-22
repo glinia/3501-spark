@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
 import static org.usfirst.frc.team3501.robot.Consts.*;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -11,6 +12,7 @@ public class Robot extends IterativeRobot {
     private Drivetrain drivetrain;
     private Arm arm;
     private Claw claw;
+    private Pusher pusher;
 
     public void robotInit() {
         leftStick  = new Joystick(LEFT_JOYSTICK_PORT);
@@ -19,6 +21,7 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm        = new Arm();
         claw       = new Claw();
+        pusher     = new Pusher();
     }
 
     public void teleopPeriodic() {
@@ -80,6 +83,12 @@ public class Robot extends IterativeRobot {
 
         if (rightStick.getOne(7, 8))
             claw.turnOn();
+
+        // pusher
+        if (leftStick.getOneTimed(PUSH_FORWARD_SECS, 2, 3))
+            pusher.open();
+        else
+            pusher.close();
     }
 
 }
