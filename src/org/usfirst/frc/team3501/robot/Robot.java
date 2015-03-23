@@ -12,7 +12,6 @@ public class Robot extends IterativeRobot {
     private Drivetrain drivetrain;
     private Arm arm;
     private Claw claw;
-    private Pusher pusher;
 
     private Lidar lidar;
 
@@ -23,7 +22,6 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm        = new Arm();
         claw       = new Claw();
-        pusher     = new Pusher();
 
         lidar = new Lidar();
     }
@@ -87,12 +85,6 @@ public class Robot extends IterativeRobot {
 
         if (rightStick.getOne(7, 8))
             claw.turnOn();
-
-        // pusher
-        if (leftStick.getOneTimed(PUSH_FORWARD_SECS, 2, 3))
-            pusher.open();
-        else
-            pusher.close();
 
         // lidar info
         if (leftStick.getOne(4, 5))
