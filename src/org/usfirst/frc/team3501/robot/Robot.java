@@ -1,9 +1,9 @@
 package org.usfirst.frc.team3501.robot;
 
-import static org.usfirst.frc.team3501.robot.Consts.*;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+import static org.usfirst.frc.team3501.robot.Consts.*;
 
 public class Robot extends IterativeRobot {
 
@@ -13,8 +13,6 @@ public class Robot extends IterativeRobot {
     private Arm arm;
     private Claw claw;
 
-    private Lidar lidar;
-
     public void robotInit() {
         leftStick  = new Joystick(LEFT_JOYSTICK_PORT);
         rightStick = new Joystick(RIGHT_JOYSTICK_PORT);
@@ -22,8 +20,6 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         arm        = new Arm();
         claw       = new Claw();
-
-        lidar = new Lidar();
     }
 
     public void teleopPeriodic() {
@@ -69,6 +65,9 @@ public class Robot extends IterativeRobot {
         // arm movement / adjustment
         double setSpeed = arm.getSpeedFromJoystick(-leftStick.getY());
 
+        if (leftStick.get(1))
+            setSpeed /= 5;
+
         if (leftStick.get(7))
             arm.moveLeft(ARM_ADJUST_SPEED);
         else if (leftStick.get(6))
@@ -85,10 +84,6 @@ public class Robot extends IterativeRobot {
 
         if (rightStick.getOne(7, 8))
             claw.turnOn();
-
-        // lidar info
-        if (leftStick.getOne(4, 5))
-            DriverStation.reportError("voltage: " + lidar.getVoltage(), false);
     }
 
 }

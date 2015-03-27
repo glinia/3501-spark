@@ -35,10 +35,8 @@ public class Consts {
         FREE, CLOSED
     }
 
-    // pusher
-    final static int    PUSHER_FORWARD_CHANNEL = 2, PUSHER_REVERSE_CHANNEL = 3;
-    final static double PUSH_FORWARD_SECS = 1;
-
-    // lidar
-    final static int LIDAR_ANALOG_PORT = 0;
+    // auto control
+    static enum Type {
+        DRIVE, WAIT
+    }
 }
