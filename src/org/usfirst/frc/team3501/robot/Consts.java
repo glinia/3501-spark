@@ -29,7 +29,7 @@ public class Consts {
     // claw
     final static int CLAW_FORWARD_CHANNEL = 0, CLAW_REVERSE_CHANNEL = 1;
 
-    final static Value CLOSE = Value.kForward, OPEN = Value.kReverse;
+    final static Value OPEN = Value.kForward, CLOSE = Value.kReverse;
 
     static enum State {
         FREE, CLOSED
