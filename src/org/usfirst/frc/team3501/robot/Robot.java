@@ -40,10 +40,49 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         // swiggity swag got this auton in the bag
-        if (timer.get() < 1.4) {
-            arm.set(0.5);
+        driveBackOverStep();
+    }
+
+    public void testPeriodic() {
+        LiveWindow.run();
+    }
+
+    private void driveOverStep() {
+        double seconds = 2.9;
+
+        if (timer.get() < seconds * 0.2) {
+            drivetrain.driveRaw(-0.3, 0);
+        } else if (timer.get() >= seconds * 0.2 && timer.get() <= seconds * 0.8) {
+            drivetrain.driveRaw(-0.5, 0);
+        } else if (timer.get() < seconds) {
+            drivetrain.driveRaw(-0.25, 0);
+        } else {
             drivetrain.driveRaw(0, 0);
-        } else if (timer.get() < 1.4 + 1.2) {
+        }
+    }
+
+    private void drivePastStep() {
+        double seconds = 2.4;
+
+        if (timer.get() < seconds * 0.2) {
+            drivetrain.driveRaw(-0.3, 0);
+        } else if (timer.get() >= seconds * 0.2 && timer.get() <= seconds * 0.8) {
+            drivetrain.driveRaw(-0.5, 0);
+        } else if (timer.get() < seconds) {
+            drivetrain.driveRaw(-0.25, 0);
+        } else {
+            drivetrain.driveRaw(0, 0);
+        }
+    }
+
+    // normal backwards orientation, start with claw right below container lip
+    private void containerAuton() {
+        if (timer.get() < 0.4) {
+            claw.close();
+        } else if (timer.get() < 0.4 + 1.4) {
+            arm.set(0.5);
+            drivetrain.driveRaw(0.7, 0);
+        } else if (timer.get() < 0.4 + 1.4 + 0.37) {
             arm.set(0);
             drivetrain.driveRaw(0.7, 0);
         } else {
@@ -52,8 +91,13 @@ public class Robot extends IterativeRobot {
         }
     }
 
-    public void testPeriodic() {
-        LiveWindow.run();
+    private void driveBackOverStep() {
+        double seconds = 1.37;
+
+        if (timer.get() < seconds)
+            drivetrain.driveRaw(0.7, 0);
+        else
+            drivetrain.driveRaw(0, 0);
     }
 
     private void drive() {
