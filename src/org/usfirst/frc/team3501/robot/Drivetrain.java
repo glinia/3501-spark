@@ -36,4 +36,8 @@ public class Drivetrain {
                 MAX_DRIVE_SPEED * adjust(twist),
                 false);
     }
+
+    public void driveRaw(double forward, double twist) {
+        robotDrive.arcadeDrive(forward, twist, false);
+    }
 }
