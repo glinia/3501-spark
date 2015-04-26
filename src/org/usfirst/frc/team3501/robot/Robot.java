@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         // swiggity swag got this auton in the bag
-        driveBackOverStep();
+        drivePastStep();
     }
 
     public void testPeriodic() {
@@ -61,32 +61,29 @@ public class Robot extends IterativeRobot {
         }
     }
 
+    // works well for over step
     private void drivePastStep() {
-        double seconds = 2.4;
+        double seconds = 1.7;
 
-        if (timer.get() < seconds * 0.2) {
-            drivetrain.driveRaw(-0.3, 0);
-        } else if (timer.get() >= seconds * 0.2 && timer.get() <= seconds * 0.8) {
-            drivetrain.driveRaw(-0.5, 0);
-        } else if (timer.get() < seconds) {
-            drivetrain.driveRaw(-0.25, 0);
-        } else {
+        if (timer.get() < seconds)
+            drivetrain.driveRaw(-0.7, 0);
+        else
             drivetrain.driveRaw(0, 0);
-        }
     }
 
     // normal backwards orientation, start with claw right below container lip
     private void containerAuton() {
         if (timer.get() < 0.4) {
             claw.close();
-        } else if (timer.get() < 0.4 + 1.4) {
+            claw.setState(State.CLOSED);
+        } else if (timer.get() < 0.4 + 1.09) {
             arm.set(0.5);
             drivetrain.driveRaw(0.7, 0);
-        } else if (timer.get() < 0.4 + 1.4 + 0.37) {
-            arm.set(0);
-            drivetrain.driveRaw(0.7, 0);
+        } else if (timer.get() < 0.4 + 1.09 + 0.6) {
+            arm.set(0.3);
+            drivetrain.driveRaw(0, 0);
         } else {
-            arm.set(0);
+            arm.set(0.07);
             drivetrain.driveRaw(0, 0);
         }
     }
