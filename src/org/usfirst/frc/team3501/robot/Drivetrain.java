@@ -40,4 +40,8 @@ public class Drivetrain {
     public void driveRaw(double forward, double twist) {
         robotDrive.arcadeDrive(forward, twist, false);
     }
+
+    public void stop() {
+        driveRaw(0.0, 0.0);
+    }
 }
