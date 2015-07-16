@@ -21,7 +21,7 @@ public class Joystick extends edu.wpi.first.wpilibj.Joystick {
 
     public boolean getToggleButton(int button) {
         boolean pressed = get(button)
-                && !toggle.hasTimeLeft(button);
+                       && !toggle.hasTimeLeft(button);
 
         if (pressed)
             toggle.addTimeout(button);

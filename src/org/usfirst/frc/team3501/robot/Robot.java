@@ -72,12 +72,8 @@ public class Robot extends IterativeRobot {
         }
 
         // thumb toggle
-        if (rightStick.getToggleButton(2)) {
-            if (clawState == State.FREE)
-                claw.setState(State.CLOSED);
-            else if (clawState == State.CLOSED)
-                claw.setState(State.FREE);
-        }
+        if (rightStick.getToggleButton(2))
+            claw.toggleState();
 
         // arm movement / adjustment
         double setSpeed = arm.getSpeedFromJoystick(-leftStick.getY());

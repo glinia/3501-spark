@@ -15,14 +15,8 @@ public class Drivetrain {
         CANJaguar rearLeft   = new CANJaguar(REAR_LEFT_ADDRESS);
         CANJaguar rearRight  = new CANJaguar(REAR_RIGHT_ADDRESS);
 
-        robotDrive = new RobotDrive(
-                frontLeft,  rearLeft,
-                frontRight, rearRight);
-    }
-
-    // output is avg of `x` and `sqrt(x)`
-    private double adjust(double x) {
-        return (x + Math.signum(x) * Math.sqrt(Math.abs(x))) / 2;
+        robotDrive = new RobotDrive(frontLeft,  rearLeft,
+                                    frontRight, rearRight);
     }
 
     public void drive(double forward, double twist) {
@@ -31,10 +25,9 @@ public class Drivetrain {
         if (Math.abs(twist) < MIN_DRIVE_JOYSTICK_INPUT)
             twist = 0;
 
-        robotDrive.arcadeDrive(
-                MAX_DRIVE_SPEED * adjust(forward),
-                MAX_DRIVE_SPEED * adjust(twist),
-                false);
+        robotDrive.arcadeDrive(MAX_DRIVE_SPEED * adjust(forward),
+                               MAX_DRIVE_SPEED * adjust(twist),
+                               false);
     }
 
     public void driveRaw(double forward, double twist) {
@@ -43,5 +36,10 @@ public class Drivetrain {
 
     public void stop() {
         driveRaw(0.0, 0.0);
+    }
+
+    // output is avg of `x` and `sqrt(x)`
+    private double adjust(double x) {
+        return (x + Math.signum(x) * Math.sqrt(Math.abs(x))) / 2;
     }
 }

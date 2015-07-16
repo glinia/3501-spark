@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3501.robot;
 
+import org.usfirst.frc.team3501.robot.Consts.State;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static org.usfirst.frc.team3501.robot.Consts.*;
@@ -38,6 +40,13 @@ public class Claw {
     public void actuate() {
         if (state == State.CLOSED)
             close();
+    }
+
+    public void toggleState() {
+        switch(state) {
+        case FREE:   setState(State.CLOSED);
+        case CLOSED: setState(State.FREE);
+        }
     }
 
     public void setState(State s) {

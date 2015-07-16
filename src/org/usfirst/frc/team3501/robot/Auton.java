@@ -22,16 +22,16 @@ public class Auton {
 
     public void driveOverStep() {
         double seconds = 2.9;
+        double curTime = timer.get();
 
-        if (timer.get() < seconds * 0.2) {
+        if (curTime < seconds * 0.2)
             drivetrain.driveRaw(-0.3, 0);
-        } else if (timer.get() >= seconds * 0.2 && timer.get() <= seconds * 0.8) {
+        else if (curTime >= seconds * 0.2 && curTime <= seconds * 0.8)
             drivetrain.driveRaw(-0.5, 0);
-        } else if (timer.get() < seconds) {
+        else if (curTime < seconds)
             drivetrain.driveRaw(-0.25, 0);
-        } else {
+        else
             drivetrain.stop();
-        }
     }
 
     // works well for over step
