@@ -25,8 +25,8 @@ public class Robot extends IterativeRobot {
         arm        = new Arm();
         claw       = new Claw();
 
-        auton = new Auton(arm, claw, drivetrain, timer);
         timer = new Timer();
+        auton = new Auton(arm, claw, drivetrain, timer);
     }
 
     public void teleopPeriodic() {
